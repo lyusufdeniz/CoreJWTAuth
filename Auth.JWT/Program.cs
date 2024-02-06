@@ -1,3 +1,4 @@
+using Auth.Core.Entities;
 using SharedLibrary.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //options pattern oluþturduðumuz class üzerinden appsettings.json dan ilgili alanlara eriþmemizi saðlayacak
 builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOptions"));
+builder.Services.Configure<Client>(builder.Configuration.GetSection("Clients"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
