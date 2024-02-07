@@ -51,7 +51,7 @@ namespace Auth.Data.Repository
             return entity;
         }
 
-        public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
+        public  IQueryable<T> Where(Expression<Func<T, bool>> predicate)
         {
             return  Table.Where(predicate);
         }

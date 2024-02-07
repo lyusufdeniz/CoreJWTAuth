@@ -6,7 +6,7 @@ namespace Auth.Core.Repository
     {
         Task<IEnumerable<Tentity>> GetAllAsync();
         Task<Tentity> GetByIDAsync(int id);
-        Task<IQueryable<Tentity>> Where(Expression<Func<Tentity, bool>> predicate);
+        IQueryable<Tentity> Where(Expression<Func<Tentity, bool>> predicate);
         Task AddAsync(Tentity entity);
         void Remove(Tentity entity);
         Tentity Update(Tentity entity);
