@@ -12,7 +12,7 @@ namespace Auth.Core.Service
         Task<ResponseDTO<IEnumerable<TDTO>>> Where(Expression<Func<Tentity, bool>> predicate);
         Task<ResponseDTO<TDTO>> AddAsync(TDTO entity);
         Task<ResponseDTO<NoContentDTO>> Remove(int id);
-        Task<ResponseDTO<NoContentDTO>> Update(int id);
+        Task<ResponseDTO<NoContentDTO>> Update(int id,TDTO data);
 
 
     }

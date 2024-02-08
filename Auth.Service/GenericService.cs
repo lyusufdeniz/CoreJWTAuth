@@ -69,7 +69,7 @@ namespace Auth.Service
 
         }
 
-        public async Task<ResponseDTO<NoContentDTO>> Update(int id)
+        public async Task<ResponseDTO<NoContentDTO>> Update(int id, TDTO data)
         {
             var entity = await _repo.GetByIDAsync(id);
             if (entity == null)
@@ -78,7 +78,7 @@ namespace Auth.Service
             }
             else
             {
-                var mapped = _mapper.Map<Tentity>(entity);
+                var mapped = _mapper.Map<Tentity>(data);
                 _repo.Update(mapped);
                 await _unitofWork.CommitAsync();
             }

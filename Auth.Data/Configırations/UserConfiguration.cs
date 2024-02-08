@@ -9,6 +9,7 @@ namespace Auth.Data.Configırations
         public void Configure(EntityTypeBuilder<User> builder)
         {
         builder.Property(x=>x.City).HasMaxLength(50);
+            builder.Property(x => x.City).IsRequired(false);
 
         }
     }
