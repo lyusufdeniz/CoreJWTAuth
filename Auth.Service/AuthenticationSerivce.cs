@@ -8,7 +8,7 @@ using SharedLibrary.DTO;
 
 namespace Auth.Service
 {
-    public class AuthenticatioSerivce : IAuthenticationService
+    public class AuthenticationSerivce : IAuthenticationService
     {
         private readonly List<Client> _clients;
         private readonly ITokenService _tokenService;
@@ -16,7 +16,7 @@ namespace Auth.Service
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<UserRefreshToken> _repositoryRefreshToken;
 
-        public AuthenticatioSerivce(IOptions<List<Client>> clients, ITokenService tokenService, UserManager<User> userService, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> repositoryRefreshToken)
+        public AuthenticationSerivce(IOptions<List<Client>> clients, ITokenService tokenService, UserManager<User> userService, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> repositoryRefreshToken)
         {
             _clients = clients.Value;
             _tokenService = tokenService;
