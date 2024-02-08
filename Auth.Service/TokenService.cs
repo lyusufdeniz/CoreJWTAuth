@@ -16,14 +16,12 @@ namespace Auth.Service
 {
     public class TokenService : ITokenService
     {
-        private readonly UserManager<User> _userManager;
-        private readonly UserManager<Client> _clientManager;
+
         private readonly CustomTokenOptions _customTokenOptions;
 
-        public TokenService(UserManager<User> userManager, UserManager<Client> clientManager, IOptions<CustomTokenOptions> customTokenOptions)
+        public TokenService( IOptions<CustomTokenOptions> customTokenOptions)
         {
-            _userManager = userManager;
-            _clientManager = clientManager;
+
             _customTokenOptions = customTokenOptions.Value;
         }
         private string CreateRefresherToken()

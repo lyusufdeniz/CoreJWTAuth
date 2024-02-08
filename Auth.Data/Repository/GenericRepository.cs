@@ -1,40 +1,43 @@
 ﻿using Auth.Core.Repository;
 using Auth.Core.Service;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq.Expressions;
 
 namespace Auth.Data.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-     private readonly  AppDbContext db;
-     private DbSet<T> Table;
+     private readonly  DbContext _context;
+     private DbSet<T> _table;
 
 
-        public GenericRepository(AppDbContext db, DbSet<T> table)
+        public GenericRepository(AppDbContext db)
         {
-            this.db = db;
-            Table = db.Set<T>();
+          
+            _context = db;
+            _table = db.Set<T>();
+            
 
         }
 
         public async Task AddAsync(T entity)
         {
-          await  db.AddAsync(entity);
-           
+          await _table.AddAsync(entity);
+         
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await Table.ToListAsync();
+            return await _table.ToListAsync();
         }
 
         public async Task<T> GetByIDAsync(int id)
         {
-          var entity=await Table.FindAsync(id);
+          var entity=await _table.FindAsync(id);
             if(entity!=null)
             {
-                db.Entry(entity).State=EntityState.Detached;
+                _context.Entry(entity).State=EntityState.Detached;
             }
             return entity;
 
@@ -42,18 +45,18 @@ namespace Auth.Data.Repository
 
         public void Remove(T entity)
         {
-            Table.Remove(entity);
+            _table.Remove(entity);
         }
 
         public T Update(T entity)
         {
-            Table.Update(entity);
+            _table.Update(entity);
             return entity;
         }
 
         public  IQueryable<T> Where(Expression<Func<T, bool>> predicate)
         {
-            return  Table.Where(predicate);
+            return  _table.Where(predicate);
         }
     }
     
